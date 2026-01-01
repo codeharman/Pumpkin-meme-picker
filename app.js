@@ -1,26 +1,25 @@
-import { catsData } from './data.js';
-const header = document.querySelector('.header');
+import { catsData } from "./data.js";
 
-let preview = ''
+const data = catsData;
+const form = document.getElementById('form');
+const button = document.getElementById('button');
+const container = document.getElementById('container');
 
-for(let i of catsData) {
-  console.log(i)
-  for(let emotion of i.emotionTags)
-    if(!preview.includes(emotion)){
-      preview += `
-      <div class='radio'>
-        <input
-          type='radio'
-          value='${emotion}'
-          id='${emotion}'
-          name='choice'
-        >
-        <label for='choice'>${emotion}</label>
-      </div>
-        `
-    }
+function render() {
+  
+  for (let i = 0; i < data.length; i++) {
+    form.innerHTML += `
+    <div>
+      <input
+        type='radio'
+        name='cat'
+        id='${data[i].category}'
+      >
+      <label for='${data[i].category}'>${data[i].category}</label>
+    </div>
+    `
+  }
+
 }
 
-header.innerHTML = preview
-
-console.log(header)
+render()
